@@ -214,9 +214,10 @@ namespace Interest_Rate_Converter
             // 
             // rchtxtbx_output
             // 
-            this.rchtxtbx_output.Location = new System.Drawing.Point(390, 26);
+            this.rchtxtbx_output.Location = new System.Drawing.Point(390, 19);
             this.rchtxtbx_output.Name = "rchtxtbx_output";
-            this.rchtxtbx_output.Size = new System.Drawing.Size(678, 457);
+            this.rchtxtbx_output.ReadOnly = true;
+            this.rchtxtbx_output.Size = new System.Drawing.Size(678, 464);
             this.rchtxtbx_output.TabIndex = 14;
             this.rchtxtbx_output.Text = "";
             // 
@@ -230,9 +231,9 @@ namespace Interest_Rate_Converter
             this.groupBox1.Controls.Add(this.lbl_interest_rate);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cmbobx_interest_frequency);
-            this.groupBox1.Location = new System.Drawing.Point(12, 26);
+            this.groupBox1.Location = new System.Drawing.Point(12, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(363, 457);
+            this.groupBox1.Size = new System.Drawing.Size(363, 474);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             // 
@@ -242,8 +243,12 @@ namespace Interest_Rate_Converter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1092, 590);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Interest Rate Converter";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
