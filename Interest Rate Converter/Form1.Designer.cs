@@ -68,7 +68,7 @@ namespace Interest_Rate_Converter
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1111, 590);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1194, 590);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -87,15 +87,15 @@ namespace Interest_Rate_Converter
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1105, 74);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1188, 74);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // btn_close
             // 
             this.btn_close.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_close.Location = new System.Drawing.Point(907, 3);
+            this.btn_close.Location = new System.Drawing.Point(989, 3);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(195, 68);
+            this.btn_close.Size = new System.Drawing.Size(196, 68);
             this.btn_close.TabIndex = 1;
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
@@ -104,7 +104,7 @@ namespace Interest_Rate_Converter
             // btn_calc
             // 
             this.btn_calc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_calc.Location = new System.Drawing.Point(455, 3);
+            this.btn_calc.Location = new System.Drawing.Point(496, 3);
             this.btn_calc.Name = "btn_calc";
             this.btn_calc.Size = new System.Drawing.Size(194, 68);
             this.btn_calc.TabIndex = 0;
@@ -130,7 +130,7 @@ namespace Interest_Rate_Converter
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1105, 504);
+            this.panel1.Size = new System.Drawing.Size(1188, 504);
             this.panel1.TabIndex = 2;
             // 
             // groupBox1
@@ -251,8 +251,8 @@ namespace Interest_Rate_Converter
             // 
             this.cmbobx_interest_frequency.FormattingEnabled = true;
             this.cmbobx_interest_frequency.Items.AddRange(new object[] {
-            "Annual",
-            "Bi-Annual",
+            "Annually",
+            "Bi-Annually",
             "Quarterly",
             "Bi-Monthly",
             "Monthly",
@@ -269,7 +269,7 @@ namespace Interest_Rate_Converter
             this.rchtxtbx_output.Location = new System.Drawing.Point(404, 19);
             this.rchtxtbx_output.Name = "rchtxtbx_output";
             this.rchtxtbx_output.ReadOnly = true;
-            this.rchtxtbx_output.Size = new System.Drawing.Size(692, 464);
+            this.rchtxtbx_output.Size = new System.Drawing.Size(775, 464);
             this.rchtxtbx_output.TabIndex = 14;
             this.rchtxtbx_output.Text = "";
             // 
@@ -284,7 +284,7 @@ namespace Interest_Rate_Converter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1111, 590);
+            this.ClientSize = new System.Drawing.Size(1194, 590);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -43,7 +43,6 @@ namespace Interest_Rate_Converter
             lbl_ResultingAnswer.Text = "";
             cmbobx_interest_frequency.SelectedIndex = 0;
             rdobtn_GrossToAER.Checked = true;
-            rdobtn_AERToGross.Checked = false;
             rchtxtbx_output.Text = "";
         }
 
@@ -60,15 +59,16 @@ namespace Interest_Rate_Converter
             /// Test 5.1% AER = 4.89% Gross
 
             double InterestFrequency;
+            double answer;
 
             switch (cmbobx_interest_frequency.Text)
             {
-                case "Annual": InterestFrequency = 12; break;
-                case "Bi-Annual": InterestFrequency = 6; break;
+                case "Annually": InterestFrequency = 1; break;
+                case "Bi-Annually": InterestFrequency = 2; break;
                 case "Quarterly": InterestFrequency = 4; break;
-                case "Bi-Monthly": InterestFrequency = 24; break;
+                case "Bi-Monthly": InterestFrequency = 6; break;
                 case "Monthly": InterestFrequency = 12; break;
-                case "Bi-Weekly": InterestFrequency = 104; break;
+                case "Bi-Weekly": InterestFrequency = 21; break;
                 case "Weekly": InterestFrequency = 52; break;
                 case "Daily": InterestFrequency = NumberOfDaysInNextYear(); break;
                 default: InterestFrequency = 0; break;
@@ -76,30 +76,50 @@ namespace Interest_Rate_Converter
 
             if (rdobtn_GrossToAER.Checked)
             {
-                double answer = Math.Round(
-                    ((Math.Pow(
-                        (1 + ((double.Parse(txtbx_InterestRateOrInitialValue.Text) / 100) /
-                              InterestFrequency)), InterestFrequency) - 1) * 100), 2);
+                if (cmbobx_interest_frequency.Text == "Annually")
+                {
+                    answer = double.Parse(txtbx_InterestRateOrInitialValue.Text);
+                    rchtxtbx_output.AppendText("Gross of " + answer +
+                                               "% where the interest is paid annually gives an equivalent AER of " + 
+                                               txtbx_InterestRateOrInitialValue.Text + "%\r");
+                }
+                else
+                {
+                    answer = Math.Round(
+                        ((Math.Pow(
+                            (1 + ((double.Parse(txtbx_InterestRateOrInitialValue.Text) / 100) /
+                                  InterestFrequency)), InterestFrequency) - 1) * 100), 2);
 
-                lbl_ResultingAnswer.Text = "AER interest for 1 year from today = " + answer;
+                    rchtxtbx_output.AppendText("Gross of " + txtbx_InterestRateOrInitialValue.Text +
+                                               "% when interest is compounded " + cmbobx_interest_frequency.Text.ToLower() +
+                                               " for the next " + NumberOfDaysInNextYear() +
+                                               " days is equivalent to AER of " + answer + "%\r");
+                }
 
-
-                rchtxtbx_output.AppendText("AER of " + txtbx_InterestRateOrInitialValue.Text +
-                                           "% compounded " + cmbobx_interest_frequency.Text.ToLower() +
-                                           " for the next " + NumberOfDaysInNextYear() +
-                                           " days is equivalent to Gross of " + answer + "%\r");
+                lbl_ResultingAnswer.Text = "AER interest is = " + answer + "%";
             }
             else if (rdobtn_AERToGross.Checked)
             {
-                double answer = Math.Round((InterestFrequency * (Math.Pow((1 + (double.Parse(txtbx_InterestRateOrInitialValue.Text) / 100)),
-                    (1 / InterestFrequency)) - 1)) * 100, 2);
+                if (cmbobx_interest_frequency.Text == "Annually")
+                {
+                    answer = double.Parse(txtbx_InterestRateOrInitialValue.Text);
+                    rchtxtbx_output.AppendText("AER of " + answer +
+                                               "% where the interest is paid annually gives an equivalent Gross of " +
+                                               txtbx_InterestRateOrInitialValue.Text + "%\r");
+                }
+                else
+                {
+                    answer = Math.Round((InterestFrequency * (Math.Pow(
+                        (1 + (double.Parse(txtbx_InterestRateOrInitialValue.Text) / 100)),
+                        (1 / InterestFrequency)) - 1)) * 100, 2);
 
-                lbl_ResultingAnswer.Text = "Gross interest for 1 year from today = " + answer;
+                    rchtxtbx_output.AppendText("AER of " + txtbx_InterestRateOrInitialValue.Text +
+                                               "% when interest will be compounded " + cmbobx_interest_frequency.Text.ToLower() +
+                                               " for the next " + NumberOfDaysInNextYear() +
+                                               " days is equivalent to Gross of " + answer + "%\r");
+                }
 
-                rchtxtbx_output.AppendText("Gross of " + txtbx_InterestRateOrInitialValue.Text +
-                                           "% compounded " + cmbobx_interest_frequency.Text.ToLower() +
-                                           " for the next " + NumberOfDaysInNextYear() +
-                                           " days is equivalent to AER of " + answer + "%\r");
+                lbl_ResultingAnswer.Text = "Gross interest is " + answer + "%";
             }
             else
             {
@@ -108,8 +128,13 @@ namespace Interest_Rate_Converter
                 double totalYears = Math.Floor( 
                     (DateTime.Today - dtpick_invetment_start.Value).TotalDays
                     / 365.2425);
+                
 
-                lbl_ResultingAnswer.Text = totalYears.ToString();
+                var result =
+                   (Math.Pow(double.Parse(txtbx_CurrentValue.Text) / double.Parse(txtbx_InterestRateOrInitialValue.Text), 1/totalYears)
+                    -1)*100;
+
+                lbl_ResultingAnswer.Text = "Lifetime AER = " + Math.Round(result,2) + "%";
 
             }
         }
