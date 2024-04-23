@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Interest_Rate_Converter
@@ -15,9 +16,11 @@ namespace Interest_Rate_Converter
         {
             Text += " : v" +
                     Assembly.GetExecutingAssembly().GetName().Version; // put in the version number
-            cmbobx_interest_frequency.SelectedIndex = 0;
-            rdobtn_GrossToAER.Checked = true;
+
+            ResetData();
         }
+
+
 
         private void btn_close_Click(object sender, EventArgs e)
         {
@@ -26,8 +29,17 @@ namespace Interest_Rate_Converter
 
         private void btn_reset_Click(object sender, EventArgs e)
         {
+            ResetData();
+        }
 
-            txtbx_InterestRate.Text = "";
+        private void ResetData()
+        {
+            lbl_investment_start.Visible = false;
+            dtpick_invetment_start.Visible = false;
+            lbl_percent_symbol.Visible = true;
+            cmbobx_interest_frequency.Visible = true;
+            txtbx_CurrentValue.Visible = false;
+            txtbx_InterestRateOrInitialValue.Text = "";
             lbl_ResultingAnswer.Text = "";
             cmbobx_interest_frequency.SelectedIndex = 0;
             rdobtn_GrossToAER.Checked = true;
@@ -66,28 +78,39 @@ namespace Interest_Rate_Converter
             {
                 double answer = Math.Round(
                     ((Math.Pow(
-                        (1 + ((double.Parse(txtbx_InterestRate.Text) / 100) /
+                        (1 + ((double.Parse(txtbx_InterestRateOrInitialValue.Text) / 100) /
                               InterestFrequency)), InterestFrequency) - 1) * 100), 2);
 
                 lbl_ResultingAnswer.Text = "AER interest for 1 year from today = " + answer;
-                                          
 
-                rchtxtbx_output.AppendText("AER of " + txtbx_InterestRate.Text + 
-                                           "% compounded " + cmbobx_interest_frequency.Text.ToLower() + 
-                                           " for the next " + NumberOfDaysInNextYear() + 
+
+                rchtxtbx_output.AppendText("AER of " + txtbx_InterestRateOrInitialValue.Text +
+                                           "% compounded " + cmbobx_interest_frequency.Text.ToLower() +
+                                           " for the next " + NumberOfDaysInNextYear() +
                                            " days is equivalent to Gross of " + answer + "%\r");
             }
-            else
+            else if (rdobtn_AERToGross.Checked)
             {
-                double answer = Math.Round((InterestFrequency * (Math.Pow((1 + (double.Parse(txtbx_InterestRate.Text) / 100)),
+                double answer = Math.Round((InterestFrequency * (Math.Pow((1 + (double.Parse(txtbx_InterestRateOrInitialValue.Text) / 100)),
                     (1 / InterestFrequency)) - 1)) * 100, 2);
 
                 lbl_ResultingAnswer.Text = "Gross interest for 1 year from today = " + answer;
 
-                rchtxtbx_output.AppendText("Gross of " + txtbx_InterestRate.Text +
+                rchtxtbx_output.AppendText("Gross of " + txtbx_InterestRateOrInitialValue.Text +
                                            "% compounded " + cmbobx_interest_frequency.Text.ToLower() +
                                            " for the next " + NumberOfDaysInNextYear() +
                                            " days is equivalent to AER of " + answer + "%\r");
+            }
+            else
+            {
+                //rdobtn_lifetime_AER is checked.
+                
+                double totalYears = Math.Floor( 
+                    (DateTime.Today - dtpick_invetment_start.Value).TotalDays
+                    / 365.2425);
+
+                lbl_ResultingAnswer.Text = totalYears.ToString();
+
             }
         }
 
@@ -107,11 +130,33 @@ namespace Interest_Rate_Converter
         {
             if (rdobtn_AERToGross.Checked)
             {
-                lbl_interest_rate.Text = "AER Interest Rate";
+                lbl_investment_start.Visible = false;
+                dtpick_invetment_start.Visible = false;
+                lbl_percent_symbol.Visible = true;
+                cmbobx_interest_frequency.Visible = true;
+                txtbx_CurrentValue.Visible = false;
+                lbl_interest_rateOrInitialValue.Text = "AER Interest Rate";
+                lbl_InterestFrequencyOrCurrentValue.Text = "Interest Frequency";
+            }
+            else if (rdobtn_GrossToAER.Checked)
+            {
+                lbl_investment_start.Visible = false;
+                dtpick_invetment_start.Visible = false;
+                lbl_percent_symbol.Visible = true;
+                cmbobx_interest_frequency.Visible = true;
+                txtbx_CurrentValue.Visible = false;
+                lbl_interest_rateOrInitialValue.Text = "Gross Interest Rate";
+                lbl_InterestFrequencyOrCurrentValue.Text = "Interest Frequency";
             }
             else
             {
-                lbl_interest_rate.Text = "Gross Interest Rate";
+                lbl_investment_start.Visible = true;
+                dtpick_invetment_start.Visible = true;
+                lbl_percent_symbol.Visible = false;
+                cmbobx_interest_frequency.Visible = false;
+                txtbx_CurrentValue.Visible = true;
+                lbl_interest_rateOrInitialValue.Text = "Initial Investment";
+                lbl_InterestFrequencyOrCurrentValue.Text = "Current Value";
             }
         }
     }

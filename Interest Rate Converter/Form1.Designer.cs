@@ -36,16 +36,20 @@ namespace Interest_Rate_Converter
             this.btn_calc = new System.Windows.Forms.Button();
             this.btn_reset = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpick_invetment_start = new System.Windows.Forms.DateTimePicker();
+            this.lbl_investment_start = new System.Windows.Forms.Label();
+            this.rdobtn_lifetime_AER = new System.Windows.Forms.RadioButton();
             this.rdobtn_AERToGross = new System.Windows.Forms.RadioButton();
             this.rdobtn_GrossToAER = new System.Windows.Forms.RadioButton();
             this.lbl_ResultingAnswer = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtbx_InterestRate = new System.Windows.Forms.TextBox();
-            this.lbl_interest_rate = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_percent_symbol = new System.Windows.Forms.Label();
+            this.txtbx_InterestRateOrInitialValue = new System.Windows.Forms.TextBox();
+            this.lbl_interest_rateOrInitialValue = new System.Windows.Forms.Label();
+            this.lbl_InterestFrequencyOrCurrentValue = new System.Windows.Forms.Label();
             this.cmbobx_interest_frequency = new System.Windows.Forms.ComboBox();
             this.rchtxtbx_output = new System.Windows.Forms.RichTextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtbx_CurrentValue = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -64,7 +68,7 @@ namespace Interest_Rate_Converter
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1092, 590);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1111, 590);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -74,7 +78,7 @@ namespace Interest_Rate_Converter
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 201F));
             this.tableLayoutPanel2.Controls.Add(this.btn_close, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.btn_calc, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.btn_reset, 0, 0);
@@ -83,15 +87,15 @@ namespace Interest_Rate_Converter
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1086, 74);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1105, 74);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // btn_close
             // 
             this.btn_close.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_close.Location = new System.Drawing.Point(889, 3);
+            this.btn_close.Location = new System.Drawing.Point(907, 3);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(194, 68);
+            this.btn_close.Size = new System.Drawing.Size(195, 68);
             this.btn_close.TabIndex = 1;
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
@@ -100,7 +104,7 @@ namespace Interest_Rate_Converter
             // btn_calc
             // 
             this.btn_calc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_calc.Location = new System.Drawing.Point(446, 3);
+            this.btn_calc.Location = new System.Drawing.Point(455, 3);
             this.btn_calc.Name = "btn_calc";
             this.btn_calc.Size = new System.Drawing.Size(194, 68);
             this.btn_calc.TabIndex = 0;
@@ -126,8 +130,55 @@ namespace Interest_Rate_Converter
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1086, 504);
+            this.panel1.Size = new System.Drawing.Size(1105, 504);
             this.panel1.TabIndex = 2;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtbx_CurrentValue);
+            this.groupBox1.Controls.Add(this.dtpick_invetment_start);
+            this.groupBox1.Controls.Add(this.lbl_investment_start);
+            this.groupBox1.Controls.Add(this.rdobtn_lifetime_AER);
+            this.groupBox1.Controls.Add(this.rdobtn_AERToGross);
+            this.groupBox1.Controls.Add(this.rdobtn_GrossToAER);
+            this.groupBox1.Controls.Add(this.lbl_ResultingAnswer);
+            this.groupBox1.Controls.Add(this.lbl_percent_symbol);
+            this.groupBox1.Controls.Add(this.txtbx_InterestRateOrInitialValue);
+            this.groupBox1.Controls.Add(this.lbl_interest_rateOrInitialValue);
+            this.groupBox1.Controls.Add(this.lbl_InterestFrequencyOrCurrentValue);
+            this.groupBox1.Controls.Add(this.cmbobx_interest_frequency);
+            this.groupBox1.Location = new System.Drawing.Point(12, 9);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(386, 474);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            // 
+            // dtpick_invetment_start
+            // 
+            this.dtpick_invetment_start.Location = new System.Drawing.Point(172, 179);
+            this.dtpick_invetment_start.Name = "dtpick_invetment_start";
+            this.dtpick_invetment_start.Size = new System.Drawing.Size(208, 26);
+            this.dtpick_invetment_start.TabIndex = 16;
+            // 
+            // lbl_investment_start
+            // 
+            this.lbl_investment_start.AutoSize = true;
+            this.lbl_investment_start.Location = new System.Drawing.Point(16, 184);
+            this.lbl_investment_start.Name = "lbl_investment_start";
+            this.lbl_investment_start.Size = new System.Drawing.Size(127, 20);
+            this.lbl_investment_start.TabIndex = 15;
+            this.lbl_investment_start.Text = "Investment Start";
+            // 
+            // rdobtn_lifetime_AER
+            // 
+            this.rdobtn_lifetime_AER.AutoSize = true;
+            this.rdobtn_lifetime_AER.Location = new System.Drawing.Point(67, 98);
+            this.rdobtn_lifetime_AER.Name = "rdobtn_lifetime_AER";
+            this.rdobtn_lifetime_AER.Size = new System.Drawing.Size(229, 24);
+            this.rdobtn_lifetime_AER.TabIndex = 14;
+            this.rdobtn_lifetime_AER.Text = "Lifetime AER of Investment";
+            this.rdobtn_lifetime_AER.UseVisualStyleBackColor = true;
+            this.rdobtn_lifetime_AER.CheckedChanged += new System.EventHandler(this.rdobtn_GrossToAER_CheckedChanged);
             // 
             // rdobtn_AERToGross
             // 
@@ -138,6 +189,7 @@ namespace Interest_Rate_Converter
             this.rdobtn_AERToGross.TabIndex = 13;
             this.rdobtn_AERToGross.Text = "AER to Gross";
             this.rdobtn_AERToGross.UseVisualStyleBackColor = true;
+            this.rdobtn_AERToGross.CheckedChanged += new System.EventHandler(this.rdobtn_GrossToAER_CheckedChanged);
             // 
             // rdobtn_GrossToAER
             // 
@@ -155,45 +207,45 @@ namespace Interest_Rate_Converter
             // lbl_ResultingAnswer
             // 
             this.lbl_ResultingAnswer.AutoSize = true;
-            this.lbl_ResultingAnswer.Location = new System.Drawing.Point(14, 299);
+            this.lbl_ResultingAnswer.Location = new System.Drawing.Point(16, 359);
             this.lbl_ResultingAnswer.Name = "lbl_ResultingAnswer";
             this.lbl_ResultingAnswer.Size = new System.Drawing.Size(21, 20);
             this.lbl_ResultingAnswer.TabIndex = 11;
             this.lbl_ResultingAnswer.Text = "...";
             // 
-            // label3
+            // lbl_percent_symbol
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(288, 166);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 20);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "%";
+            this.lbl_percent_symbol.AutoSize = true;
+            this.lbl_percent_symbol.Location = new System.Drawing.Point(290, 226);
+            this.lbl_percent_symbol.Name = "lbl_percent_symbol";
+            this.lbl_percent_symbol.Size = new System.Drawing.Size(23, 20);
+            this.lbl_percent_symbol.TabIndex = 10;
+            this.lbl_percent_symbol.Text = "%";
             // 
-            // txtbx_InterestRate
+            // txtbx_InterestRateOrInitialValue
             // 
-            this.txtbx_InterestRate.Location = new System.Drawing.Point(170, 163);
-            this.txtbx_InterestRate.Name = "txtbx_InterestRate";
-            this.txtbx_InterestRate.Size = new System.Drawing.Size(112, 26);
-            this.txtbx_InterestRate.TabIndex = 9;
+            this.txtbx_InterestRateOrInitialValue.Location = new System.Drawing.Point(172, 223);
+            this.txtbx_InterestRateOrInitialValue.Name = "txtbx_InterestRateOrInitialValue";
+            this.txtbx_InterestRateOrInitialValue.Size = new System.Drawing.Size(112, 26);
+            this.txtbx_InterestRateOrInitialValue.TabIndex = 9;
             // 
-            // lbl_interest_rate
+            // lbl_interest_rateOrInitialValue
             // 
-            this.lbl_interest_rate.AutoSize = true;
-            this.lbl_interest_rate.Location = new System.Drawing.Point(14, 166);
-            this.lbl_interest_rate.Name = "lbl_interest_rate";
-            this.lbl_interest_rate.Size = new System.Drawing.Size(150, 20);
-            this.lbl_interest_rate.TabIndex = 8;
-            this.lbl_interest_rate.Text = "Gross Interest Rate";
+            this.lbl_interest_rateOrInitialValue.AutoSize = true;
+            this.lbl_interest_rateOrInitialValue.Location = new System.Drawing.Point(16, 226);
+            this.lbl_interest_rateOrInitialValue.Name = "lbl_interest_rateOrInitialValue";
+            this.lbl_interest_rateOrInitialValue.Size = new System.Drawing.Size(150, 20);
+            this.lbl_interest_rateOrInitialValue.TabIndex = 8;
+            this.lbl_interest_rateOrInitialValue.Text = "Gross Interest Rate";
             // 
-            // label1
+            // lbl_InterestFrequencyOrCurrentValue
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 215);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Interest Frequency";
+            this.lbl_InterestFrequencyOrCurrentValue.AutoSize = true;
+            this.lbl_InterestFrequencyOrCurrentValue.Location = new System.Drawing.Point(16, 275);
+            this.lbl_InterestFrequencyOrCurrentValue.Name = "lbl_InterestFrequencyOrCurrentValue";
+            this.lbl_InterestFrequencyOrCurrentValue.Size = new System.Drawing.Size(143, 20);
+            this.lbl_InterestFrequencyOrCurrentValue.TabIndex = 7;
+            this.lbl_InterestFrequencyOrCurrentValue.Text = "Interest Frequency";
             // 
             // cmbobx_interest_frequency
             // 
@@ -207,41 +259,32 @@ namespace Interest_Rate_Converter
             "Bi-Weekly",
             "Weekly",
             "Daily"});
-            this.cmbobx_interest_frequency.Location = new System.Drawing.Point(170, 212);
+            this.cmbobx_interest_frequency.Location = new System.Drawing.Point(172, 272);
             this.cmbobx_interest_frequency.Name = "cmbobx_interest_frequency";
             this.cmbobx_interest_frequency.Size = new System.Drawing.Size(174, 28);
             this.cmbobx_interest_frequency.TabIndex = 6;
             // 
             // rchtxtbx_output
             // 
-            this.rchtxtbx_output.Location = new System.Drawing.Point(390, 19);
+            this.rchtxtbx_output.Location = new System.Drawing.Point(404, 19);
             this.rchtxtbx_output.Name = "rchtxtbx_output";
             this.rchtxtbx_output.ReadOnly = true;
-            this.rchtxtbx_output.Size = new System.Drawing.Size(678, 464);
+            this.rchtxtbx_output.Size = new System.Drawing.Size(692, 464);
             this.rchtxtbx_output.TabIndex = 14;
             this.rchtxtbx_output.Text = "";
             // 
-            // groupBox1
+            // txtbx_CurrentValue
             // 
-            this.groupBox1.Controls.Add(this.rdobtn_AERToGross);
-            this.groupBox1.Controls.Add(this.rdobtn_GrossToAER);
-            this.groupBox1.Controls.Add(this.lbl_ResultingAnswer);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtbx_InterestRate);
-            this.groupBox1.Controls.Add(this.lbl_interest_rate);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.cmbobx_interest_frequency);
-            this.groupBox1.Location = new System.Drawing.Point(12, 9);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(363, 474);
-            this.groupBox1.TabIndex = 15;
-            this.groupBox1.TabStop = false;
+            this.txtbx_CurrentValue.Location = new System.Drawing.Point(172, 272);
+            this.txtbx_CurrentValue.Name = "txtbx_CurrentValue";
+            this.txtbx_CurrentValue.Size = new System.Drawing.Size(112, 26);
+            this.txtbx_CurrentValue.TabIndex = 17;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1092, 590);
+            this.ClientSize = new System.Drawing.Size(1111, 590);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -269,15 +312,19 @@ namespace Interest_Rate_Converter
         private System.Windows.Forms.Button btn_reset;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbl_ResultingAnswer;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtbx_InterestRate;
-        private System.Windows.Forms.Label lbl_interest_rate;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_percent_symbol;
+        private System.Windows.Forms.TextBox txtbx_InterestRateOrInitialValue;
+        private System.Windows.Forms.Label lbl_interest_rateOrInitialValue;
+        private System.Windows.Forms.Label lbl_InterestFrequencyOrCurrentValue;
         private System.Windows.Forms.ComboBox cmbobx_interest_frequency;
         private System.Windows.Forms.RadioButton rdobtn_AERToGross;
         private System.Windows.Forms.RadioButton rdobtn_GrossToAER;
         private System.Windows.Forms.RichTextBox rchtxtbx_output;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdobtn_lifetime_AER;
+        private System.Windows.Forms.DateTimePicker dtpick_invetment_start;
+        private System.Windows.Forms.Label lbl_investment_start;
+        private System.Windows.Forms.TextBox txtbx_CurrentValue;
     }
 }
 
