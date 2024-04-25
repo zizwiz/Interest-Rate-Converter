@@ -76,39 +76,20 @@ namespace Interest_Rate_Converter
 
             if (rdobtn_GrossToAER.Checked)
             {
-                if (cmbobx_interest_frequency.Text == "Annually")
-                {
-                    answer = double.Parse(txtbx_InterestRateOrInitialValue.Text);
-                    rchtxtbx_output.AppendText("Gross of " + answer +
-                                               "% where the interest is paid annually gives an equivalent AER of " + 
-                                               txtbx_InterestRateOrInitialValue.Text + "%\r");
-                }
-                else
-                {
-                    answer = Math.Round(
+                answer = Math.Round(
                         ((Math.Pow(
                             (1 + ((double.Parse(txtbx_InterestRateOrInitialValue.Text) / 100) /
                                   InterestFrequency)), InterestFrequency) - 1) * 100), 2);
 
-                    rchtxtbx_output.AppendText("Gross of " + txtbx_InterestRateOrInitialValue.Text +
-                                               "% when interest is compounded " + cmbobx_interest_frequency.Text.ToLower() +
-                                               " for the next " + NumberOfDaysInNextYear() +
-                                               " days is equivalent to AER of " + answer + "%\r");
-                }
+                rchtxtbx_output.AppendText("Gross of " + txtbx_InterestRateOrInitialValue.Text +
+                                           "% when interest is compounded " + cmbobx_interest_frequency.Text.ToLower() +
+                                           " for the next " + NumberOfDaysInNextYear() +
+                                           " days is equivalent to AER of " + answer + "%\r");
 
                 lbl_ResultingAnswer.Text = "AER interest is = " + answer + "%";
             }
             else if (rdobtn_AERToGross.Checked)
             {
-                if (cmbobx_interest_frequency.Text == "Annually")
-                {
-                    answer = double.Parse(txtbx_InterestRateOrInitialValue.Text);
-                    rchtxtbx_output.AppendText("AER of " + answer +
-                                               "% where the interest is paid annually gives an equivalent Gross of " +
-                                               txtbx_InterestRateOrInitialValue.Text + "%\r");
-                }
-                else
-                {
                     answer = Math.Round((InterestFrequency * (Math.Pow(
                         (1 + (double.Parse(txtbx_InterestRateOrInitialValue.Text) / 100)),
                         (1 / InterestFrequency)) - 1)) * 100, 2);
@@ -117,24 +98,23 @@ namespace Interest_Rate_Converter
                                                "% when interest will be compounded " + cmbobx_interest_frequency.Text.ToLower() +
                                                " for the next " + NumberOfDaysInNextYear() +
                                                " days is equivalent to Gross of " + answer + "%\r");
-                }
-
+                
                 lbl_ResultingAnswer.Text = "Gross interest is " + answer + "%";
             }
             else
             {
                 //rdobtn_lifetime_AER is checked.
-                
-                double totalYears = Math.Floor( 
+
+                double totalYears = Math.Floor(
                     (DateTime.Today - dtpick_invetment_start.Value).TotalDays
                     / 365.2425);
-                
+
 
                 var result =
-                   (Math.Pow(double.Parse(txtbx_CurrentValue.Text) / double.Parse(txtbx_InterestRateOrInitialValue.Text), 1/totalYears)
-                    -1)*100;
+                   (Math.Pow(double.Parse(txtbx_CurrentValue.Text) / double.Parse(txtbx_InterestRateOrInitialValue.Text), 1 / totalYears)
+                    - 1) * 100;
 
-                lbl_ResultingAnswer.Text = "Lifetime AER = " + Math.Round(result,2) + "%";
+                lbl_ResultingAnswer.Text = "Lifetime AER = " + Math.Round(result, 2) + "%";
 
             }
         }
